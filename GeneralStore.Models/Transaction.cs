@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeneralStore.Models
 {
-    class Transaction
+    public class Transaction
     {
         [Key]
         public int Id { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GeneralStore.Models
 {
-    class Customer
+    public class Customer
     {
         [Key]
         public int Id { get; set; }
