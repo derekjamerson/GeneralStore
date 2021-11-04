@@ -40,7 +40,7 @@ namespace GeneralStore.Services
         [HttpGet]
         public async Task<IHttpActionResult> GetAllTransactions()
         {
-            List<Transaction> _transactions = new List<Transaction>();
+            List<Transaction> _transactions = await _context.Transactions.ToListAsync();
             return Ok(_transactions);
         }
 
@@ -48,7 +48,7 @@ namespace GeneralStore.Services
         [HttpGet]
         public async Task<IHttpActionResult> GetTransactionsByCustomerId([FromUri] int customerId)
         {
-            List<Transaction> _transactions = new List<Transaction>();
+            List<Transaction> _transactions = await _context.Transactions.ToListAsync();
 
             foreach(Transaction t in _transactions)
             {
