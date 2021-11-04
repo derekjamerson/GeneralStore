@@ -13,11 +13,11 @@ namespace GeneralStore.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Customer))]
+        [ForeignKey(nameof(Customer)), Required]
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
-        [ForeignKey(nameof(Product))]
+        [ForeignKey(nameof(Product)), Required]
         public virtual int ProductSKU { get; set; }
         public virtual Product Product { get; set; }
 

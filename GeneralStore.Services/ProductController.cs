@@ -32,32 +32,32 @@ namespace GeneralStore.Services
         [HttpGet]
         public async Task<IHttpActionResult> GetAllProducts()
         {
-            List<Product> products = await _context.Products.ToListAsync();
-            return Ok(products);
+            List<Product> _products = await _context.Products.ToListAsync();
+            return Ok(_products);
         }
 
-        //Get a Product by its ID(GET)
+        //Get a Product by its SKU(GET)
         [HttpGet]
-        public async Task<IHttpActionResult> GetProductById([FromUri] int id)
+        public async Task<IHttpActionResult> GetProductBySKU([FromUri] int sku)
         {
-            Product product = await _context.Products.FindAsync(id);
+            Product product = await _context.Products.FindAsync(sku);
             if (product != null)
                 return Ok(product);
 
             return NotFound();
         }
 
-        //Update an existing Product by its ID(PUT)
+        //Update an existing Product by its SKU(PUT)
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateProduct([FromUri] int id, [FromBody] Product updatedModel)
+        public async Task<IHttpActionResult> UpdateProduct([FromUri] int sku, [FromBody] Product updatedModel)
         {
-            if (id != updatedModel.Id)
-                return BadRequest("IDs do not match.");
+            if (sku != updatedModel?.SKU)
+                return BadRequest("SKUs do not match.");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            Product product = await _context.Products.FindAsync(id);
+            Product product = await _context.Products.FindAsync(sku);
 
             if (product is null)
                 return NotFound();
@@ -69,11 +69,11 @@ namespace GeneralStore.Services
             return Ok($"\"{product.Name}\" successfully updated.");
         }
 
-        //Delete an existing Product by its ID(DELETE)
+        //Delete an existing Product by its SKU(DELETE)
         [HttpDelete]
-        public async Task<IHttpActionResult> RemoveProduct([FromUri] int id)
+        public async Task<IHttpActionResult> RemoveProduct([FromUri] int sku)
         {
-            Product product = await _context.Products.FindAsync(id);
+            Product product = await _context.Products.FindAsync(sku);
 
             if (product is null)
                 return NotFound();

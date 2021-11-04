@@ -32,8 +32,8 @@ namespace GeneralStore.Services
         [HttpGet]
         public async Task<IHttpActionResult> GetAllCustomers()
         {
-            List<Customer> customers = await _context.Customers.ToListAsync();
-            return Ok(customers);
+            List<Customer> _customers = await _context.Customers.ToListAsync();
+            return Ok(_customers);
         }
 
         //Get a Customer by its ID(GET)
@@ -51,7 +51,7 @@ namespace GeneralStore.Services
         [HttpPut]
         public async Task<IHttpActionResult> UpdateCustomer([FromUri] int id, [FromBody]Customer updatedModel)
         {
-            if (id != updatedModel.Id)
+            if (id != updatedModel?.Id)
                 return BadRequest("IDs do not match.");
 
             if (!ModelState.IsValid)
