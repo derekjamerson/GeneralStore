@@ -77,7 +77,7 @@ namespace GeneralStore.Services
             //When updating Transactions, make sure to:
             //-Verify any Product changes
             //-Update Product Inventory to reflect updated Transaction
-            [HttpPut]
+        [HttpPut]
         public async Task<IHttpActionResult> UpdateTransaction([FromUri] int id, [FromBody] Transaction updatedModel)
         {
             if (id != updatedModel?.Id)
@@ -114,8 +114,8 @@ namespace GeneralStore.Services
 
         //Delete an existing Transaction by its ID(DELETE)
             //When deleting Transactions, make sure to:
-            //Update Product Inventory to reflect updated Transaction
-            [HttpDelete]
+            //-Update Product Inventory to reflect updated Transaction
+        [HttpDelete]
         public async Task<IHttpActionResult> DeleteTransaction([FromUri] int id)
         {
             Transaction transaction = await _context.Transactions.FindAsync(id);
